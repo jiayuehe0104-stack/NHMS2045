@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NHMS · Health Monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+<!-- 1.Agreement -->
+<div class="overlay-screen active" id="consent-screen">
+  <video class="consent-bg-video" autoplay muted loop playsinline>
+    <source src="assets/video/background0.mp4" type="video/mp4">
+  </video>
+
+  <div class="consent-card">
+    <p class="consent-eyebrow typewriter">NHMS // TERMS OF SERVICE</p>
+    <h1 class="consent-title typewriter">User Licence Agreement (Summary)</h1>
+    <div class="agreement-scroll">
+      <ol class="rules-list" id="rules-list">
+        <li>Once the device is activated, the system will collect your physiological data around the clock, including but not limited to: <span style="color:rgb(0, 198, 198);font-weight:700;">heart rate, blood pressure, blood oxygen levels, respiratory rate, body temperature, sleep status, neural activity indicators, emotional stress index, and other health metrics added following system updates</span>.<p></p>
+The device runs continuously by default and does not need to be switched on manually.</li><p></p>
+        <li>The system will carry out a dynamic analysis of your health status by combining your real-time data, historical medical records and national medical databases, and will generate a personalised health risk rating.<p></p>
+The risk assessment results will be continuously updated and used for: <span style="color:rgb(0, 198, 198);font-weight:700;">disease early warning, medical advice, health interventions and determining the priority of emergency care</span>.
+</li><p></p>
+        <li>By default, only the following authorised parties may view your health data:<br>
+<span style="color:rgb(0, 198, 198);font-weight:700;">✓ Yourself<br>
+✓ Healthcare organisations providing you with medical services<br>
+✓ Family members you have actively linked</span><p></p>
+Unless otherwise provided for by law, no organisation may directly access your personal health data.</li><p></p>
+        <li>Should the system determine that you are in a life-threatening situation and unable to respond actively, you authorise the following:<br>
+<span style="color:rgb(0, 198, 198);font-weight:700;">· Automatic contact with the nearest medical facility;<br>
+· Sharing of necessary health data with the emergency response team;<br>
+· Remote activation of medical devices for emergency nerve stimulation and life support;<br>
+· Transmission of your real-time location to the emergency services.</span><p></p>
+The above measures do not require your immediate consent to be sought again.</li><p></p>
+        <li>The National Health Bureau undertakes that:<br>
+<span style="color:rgb(0, 198, 198);font-weight:700;">· Your health data will be stored in accordance with national encryption standards;<br>
+· Unauthorised access to data will be subject to legal action.</span><p></p>
+Nevertheless, no digital system can guarantee the complete absence of cybersecurity risks.</li><p></p>
+<li>
+  As medical research progresses, new monitoring indicators, risk models or healthcare services may be added to the system.<br>
+By continuing to use this system, you are deemed to have accepted such updates.
+</li>
+      </ol>
+    </div>
+    <button class="primary-btn" id="btn-agree">I agree</button>
+  </div>
+</div>
+
+<!-- 2. Loading -->
+<div class="overlay-screen" id="loading-screen">
+  <svg class="pulse-svg" viewBox="0 0 500 150">
+    <path class="pulse-path" d="M 0 75 L 30 75 L 40 65 L 48 85 L 58 15 L 72 135 L 82 50 L 92 88 L 102 75 L 170 75 L 180 65 L 188 85 L 198 15 L 212 135 L 222 50 L 232 88 L 242 75 L 310 75 L 320 65 L 328 85 L 338 15 L 352 135 L 362 50 L 372 88 L 382 75 L 500 75" />
+  </svg>
+  <p class="loading-text">Syncing your vitals…</p>
+</div>
+
+<!-- 3. APP -->
+<div class="overlay-screen" id="main-app">
+  <div class="app-layout">
+
+    <div class="phone-frame">
+
+      <video class="hand-drawn-frame" autoplay muted loop playsinline>
+      <source src="assets/video/phone_frame.mp4" type="video/mp4">
+      </video>
+
+      <div class="phone-screen">
+
+<!-- HOME -->
+        <div class="tab-content active" data-tab="dashboard">
+          <p class="phone-section-label">Dashboard</p>
+          <div class="vitals-row">
+            <div class="vital-cell">
+              <span class="vital-value" id="hr-live">78</span>
+              <span class="vital-unit">bpm</span>
+              <span class="vital-name">Heart rate</span>
+            </div>
+            <div class="vital-cell">
+              <span class="vital-value">97</span>
+              <span class="vital-unit">%</span>
+              <span class="vital-name">Blood O₂</span>
+            </div>
+            <div class="vital-cell">
+              <span class="vital-value vital-value--text">Stable</span>
+              <span class="vital-name">Mood index</span>
+            </div>
+          </div>
+
+          <div class="insight-card">
+            Over the past 24 hours, your heart rate spiked twice — once during
+            your commute, once late at night. Tap the log to see details.
+          </div>
+
+          <div class="mood-check">
+            <p class="mood-prompt">Daily mood check<br>How are you feeling?</p>
+            <div class="mood-options">
+              <button class="mood-btn" data-mood="stable">🙂 Stable</button>
+              <button class="mood-btn" data-mood="fine">😀 Fine</button>
+              <button class="mood-btn" data-mood="distressed">😒 Distressed</button>
+            </div>
+          </div>
+
+          <p class="dashboard-footer">Synced continuously by Dawn Technologies<br><span style="color:rgb(0, 198, 198);font-weight:700;">Day 268</span> of continuous monitoring</p>
+        </div>
+
+<!-- LOG -->
+        <div class="tab-content" data-tab="log">
+          <p class="phone-section-label">Today's log</p>
+          <div class="log-list">
+
+            <button class="log-entry" data-video="wakeup.mp4" data-poster="cover_image1.jpg"
+              data-title="07:42 · Waking up" data-change="Heart rate 62 → 70"
+              data-desc="The wristband has recorded that you have awakened from deep sleep, and your heart rate is rising slowly. &#10;
+              Last night’s sleep monitoring is complete: your total sleep duration was 6h 36min, which is 46 minutes shorter than the average; deep sleep accounted for 21% of the total, and you experienced two brief awakenings during the night. The system detected a brief increase in your heart rate at 03:17 am, but it did not reach the risk warning threshold.">
+              <span class="log-time">07:42</span>
+              <span class="log-title">Waking up</span>
+              <span class="log-change">HR 62 → 70</span>
+            </button>
+
+            <button class="log-entry" data-video="commute.mp4" data-poster="cover_image.jpg"
+              data-title="08:23 · Commute" data-change="Heart rate 68 → 100"
+              data-desc="Less than 40 minutes to go before clocking in for work! &#10;
+              You ran at a brisk pace for about two minutes to catch the bus. My real-time heart rate rose to 100, which the system classified as a short-term exercise session and did not trigger a risk alert.">
+              <span class="log-time">08:23</span>
+              <span class="log-title">Commute</span>
+              <span class="log-change">HR 68 → 100</span>
+            </button>
+
+            <button class="log-entry" data-video="meeting.mov" data-poster="cover_image4.jpeg"
+              data-title="09:00 · Morning meeting" data-change="Mood: Stable → Mildly tense"
+              data-desc="Once the meeting began, your heart rate and skin conductance remained above resting levels, with your stress index rising by 18% compared to your daily average.&#10;
+              Based on an analysis of historical data, the system indicates that this change is highly likely to be related to your work environment.&#10;
+              At 09:21, after your manager mentioned the arrangements for this quarter’s team health assessment, your stress index showed another brief fluctuation, returning to the normal range once the meeting had ended.">
+              <span class="log-time">09:00</span>
+              <span class="log-title">Morning meeting</span>
+              <span class="log-change">Mood: tense</span>
+            </button>
+
+            <button class="log-entry" data-video="lunchbreak.mp4" data-poster="cover_image2.jpg"
+              data-title="12:50 · Lunch break" data-change="Heart rate: no significant change"
+              data-desc="You spent 16 minutes in the break area.&#10;
+              Ambient audio monitoring detected conversations in the vicinity concerning topics such as ‘health check scores’, ‘end-of-year bonuses’ and ‘system flags’.&#10;
+              You did not actively participate in the discussions.
+              Your stress index has risen by 11% compared to before your lunch break.&#10;
+              Current emotional state: mild anxiety.">
+              <span class="log-time">12:50</span>
+              <span class="log-title">Lunch break</span>
+              <span class="log-change">HR steady</span>
+            </button>
+
+            <button class="log-entry" data-video="worklate.mp4" data-poster="cover_image3.jpg"
+              data-title="19:20 · Working late" data-change="Mood: Mildly tense → Low"
+              data-desc="You have now been working for over 10 hours today.&#10;
+              Over the past 3 hours, you have made three consecutive amendments to the proposal, and have been sitting for a total of 187 minutes.&#10;
+              The system has detected that you have been in a state of concentration for an extended period; both your eye strain index and mental workload are higher than your daily average.&#10;
+              We recommend that you finish work within the next 30 minutes and ensure you get at least 7 hours’ sleep tonight.">
+              <span class="log-time">19:20</span>
+              <span class="log-title">Working late</span>
+              <span class="log-change">Mood: low</span>
+            </button>
+
+            <button class="log-entry log-entry--ongoing" data-jump-tab="messages"
+              data-title="23:47 · Late-night conversation" data-change="Heart rate 74 → 91"
+              data-desc="This entry keeps showing 'in progress' — because this conversation still hasn't really ended.">
+              <span class="log-time">23:47</span>
+              <span class="log-title">Late-night conversation</span>
+              <span class="log-change">In progress →</span>
+            </button>
+
+          </div>
+        </div>
+
+<!-- MESSAGE -->
+        <div class="tab-content" data-tab="messages">
+          <p class="phone-section-label">Mom</p>
+          <div class="chat-time-divider">Today 23:47</div>
+          <div class="chat-log" id="chat-log"></div>
+        </div>
+
+<!-- NEWS -->
+        <div class="tab-content" data-tab="news">
+  <p class="phone-section-label">News</p>
+  
+  <div class="news-list">
+    <div class="news-card-single">
+      <div class="news-head">
+        <span class="news-source"><h2>Morning Briefing</h2></span>
+        <span class="news-time">07:00</span>
+      </div>
+      
+      <div class="news-single-image-wrap">
+        <img class="news-img" src="assets/images/news.jpg" alt="News Image">
+      </div>
+
+      <p class="news-body-text">
+        <span style="color:rgb(0, 198, 198);font-weight:700;">Nine years</span> into the Health Data Sovereignty Act, registered devices nationwide have passed <span style="color:rgb(0, 198, 198);font-weight:700;">210 million</span>. Dawn Technologies released its annual report yesterday, stating that continuous monitoring not only enhances the ability to detect diseases at an early stage, but also helps family members keep abreast of each other’s health...<br><br>
+        But a community survey found <span style="color:rgb(0, 198, 198);font-weight:700;">over 40%</span> of users report that simply knowing their family can see their data has itself become a new source of stress.
+      </p>
+    </div>
+
+    <div class="comments-section">
+      <div class="comments-header">
+        <h3>Comments (3)</h3>
+      </div>
+
+      <div class="comments-list">
+        <div class="comment-item">
+          <img class="comment-avatar-img" src="assets/images/user1.png" alt="Alex_M">
+          <div class="comment-content">
+            <div class="comment-user-info">
+              <span class="comment-username">Alex_M</span>
+              <span class="comment-time">07:42</span>
+            </div>
+            <p class="comment-text">It was only because of an early warning from the system that my dad’s heart problem was detected last year，it saved his life.🙏🏻🙏🏻🙏🏻 To be honest, I’m all for keeping it switched on at all times.</p>
+          </div>
+        </div>
+
+        <div class="comment-item">
+          <img class="comment-avatar-img" src="assets/images/user2.png" alt="Elena_K">
+          <div class="comment-content">
+            <div class="comment-user-info">
+              <span class="comment-username">David_88</span>
+              <span class="comment-time">08:15</span>
+            </div>
+            <p class="comment-text">We definitely need a 'private-mode' option. Continuous monitoring without boundaries is overwhelming.<br>
+            'For health information purposes only','Will not affect other entitlements'. Do people really believe that?</p>
+          </div>
+        </div>
+
+        <div class="comment-item">
+          <img class="comment-avatar-img" src="assets/images/user3.png" alt="David_88">
+          <div class="comment-content">
+            <div class="comment-user-info">
+              <span class="comment-username">Elena_K</span>
+              <span class="comment-time">09:03</span>
+            </div>
+            <p class="comment-text">I live in a high-altitude area, and my heart rate and blood oxygen levels have always differed from the system’s default values; I receive risk alerts every month.😔</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+      </div>
+
+<!-- BOTTOM -->
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab-target="dashboard">
+          <img class="tab-icon-img" src="assets/images/home.png" alt="home"></i><span>Home</span>
+        </button>
+        <button class="tab-btn" data-tab-target="log">
+    <img class="tab-icon-img" src="assets/images/log.png" alt="Log">
+    <span>Log</span>
+  </button>
+        <button class="tab-btn" data-tab-target="messages">
+    <img class="tab-icon-img" src="assets/images/messages.png" alt="Messages">
+    <span>Messages</span>
+  </button>
+        <button class="tab-btn" data-tab-target="news">
+    <img class="tab-icon-img" src="assets/images/news.png" alt="News">
+    <span>News</span>
+  </button>
+      </div>
+    </div>
+
+<!-- LAYOUT -->
+    <div class="detail-panel" id="detail-panel">
+      <p class="detail-empty">Tap a log entry to see the recording</p>
+    </div>
+
+  </div>
+</div>
+
+<audio id="ambient-audio" src="assets/audio/ambient.mp3" loop></audio>
+
+
+<script src="js/main.js"></script>
+
+<video class="bg-video" id="bg-video" autoplay muted loop playsinline>
+  <source src="assets/video/phone_frame.mp4" type="video/mp4">
+</video>
+
+<audio id="voice-message-audio" src="assets/audio/message.mp3"></audio>
+
+
+<div class="mood-modal-overlay" id="mood-modal-overlay">
+  <div class="hand-modal-card" id="hand-modal-card">
+    <img class="hand-card-bg" id="hand-card-bg" src="assets/images/blue1.png" alt="frame">
+
+    <button class="hand-modal-close" id="mood-modal-close">&times;</button>
+
+    <div class="hand-card-body" id="mood-modal-body">
+      </div>
+  </div>
+</div>
+
+</body>
+</html>
